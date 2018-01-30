@@ -61,14 +61,15 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 					$price			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[1]/span[2]",0)->plaintext;
 					$link			=	'https://www.redfin.com/'.$listingurl;
 					
-					
+					if($address == "")
+					{
 					$record = array( 'listingurl' =>$link, 
 		   			'price' => $price,
 		  			 'address' => $address, 
 		   			'sold' => $sold,
 					'mainpage' => $Mainpage);
 					           scraperwiki::save(array('listingurl','price','address','sold','mainpage'), $record);
-					
+					}
 					
 				}
 				
