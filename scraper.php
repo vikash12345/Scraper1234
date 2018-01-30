@@ -49,8 +49,10 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 		for ($i = 1; $i <= $bindas; $i++)
 		{
 			$innerlink	=	$Links[$mainpage].'/page-'.$i;
-			$pages		=	dlpage($innerlink);
 			for($j = 0; $j <= 19; $j++) 
+			{
+				$pages		=	dlpage($innerlink);
+				if($pages)
 				{
 					$sold 			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/div[2]/span",0)->plaintext;
 					$address		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[2]",0)->plaintext;
