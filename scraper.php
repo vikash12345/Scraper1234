@@ -59,10 +59,10 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 					$address		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[2]",0)->plaintext;
 					$listingurl		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[2]/div[2]/a",0)->href;
 					$price			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[1]/span[2]",0)->plaintext;
+					$link			=	'https://www.redfin.com/'.$listingurl;
 					
 					
-					
-					$record = array( 'listingurl' =>$listingurl, 
+					$record = array( 'listingurl' =>$link, 
 		   			'price' => $price,
 		  			 'address' => $address, 
 		   			'sold' => $sold,
