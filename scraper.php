@@ -72,7 +72,7 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 					
 				}
 				
-			
+			}
 		}
 		
 	}
