@@ -61,7 +61,7 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 					$price			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[1]/span[2]",0)->plaintext;
 					$link			=	'https://www.redfin.com/'.$listingurl;
 					
-					if($address == "")
+					if($link != 'https://www.redfin.com/')
 					{
 					$record = array( 'listingurl' =>$link, 
 		   			'price' => $price,
