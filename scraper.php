@@ -53,7 +53,7 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 			if($pages)
 			{
 				
-				for($j = 0; $j <= 20; $j++) 
+				for($j = 0; $j <= 19; $j++) 
 				{
 					$sold 			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/div[2]/span",0)->plaintext;
 					$address		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[2]",0)->plaintext;
@@ -61,14 +61,15 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 					$price			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[1]/span[2]",0)->plaintext;
 					
 					
-					
+					if($sold == "" || $sold == null)
+					{
 					$record = array( 'listingurl' =>$listingurl, 
 		   			'price' => $price,
 		  			 'address' => $address, 
 		   			'sold' => $sold,
 					'mainpage' => $Mainpage);
 					           scraperwiki::save(array('listingurl','price','address','sold','mainpage'), $record);
-
+					}
 					
 				}
 				
