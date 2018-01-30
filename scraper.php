@@ -33,18 +33,49 @@ $cHeadres = array(
 	   
  
  
-$Links	=	array('https://www.redfin.com/county/559/GA/Fayette-County/filter/include=sold-1wk',
-'https://www.redfin.com/county/536/GA/Cobb-County/filter/include=sold-1wk'            
-             );
+$Links	=	array('https://www.redfin.com/county/559/GA/Fayette-County/filter/include=sold-1wk');
+//'https://www.redfin.com/county/536/GA/Cobb-County/filter/include=sold-1wk',
+
 for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 {
-  $html	=	dlPage($Links[$mainpage]); 
+	$Mainpage	=	$Links[$mainpage];
+	$html	=	dlPage($Mainpage);
+	if($html)
+	{
+		$Checkpage	=	$html->find("//[@id='sidepane-header']/div[2]/div/div[1]",0);
+		$totalpages = 	str_replace("20 of" ,"",$Checkpage);
+		$num 		=	preg_replace("/[^0-9\.]/", '', $totalpages);
+		$bindas		= ceil($pagination	=	$num/20);
+		for ($i = 1; $i <= $bindas; $i++)
+		{
+			$innerlink	=	$Links[$mainpage].'/page-'.$i;
+			$pages		=	dlpage($innerlink);
+			if($pages)
+			{
+				
+				for($j = 0; $j <= 20; $j++) 
+				{
+					$sold 			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/div[2]/span",0)->plaintext;
+					$address		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[2]",0)->plaintext;
+					$listingurl		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[2]/div[2]/a",0)->href;
+					$price			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[1]/span[2]",0)->plaintext;
+					
+					
+					
+					$record = array( 'listingurl' =>$listingurl, 
+		   			'price' => $price,
+		  			 'address' => $address, 
+		   			'sold' => $sold,
+					'mainpage' => $Mainpage);
+					           scraperwiki::save(array('listingurl','price','address','sold','mainpage'), $record);
+
+					
+				}
+				
+			}
+		}
+		
+	}
   
-  
-  
-  if($html)
-  {
-	  echo $html;
-  }
 }
 ?>
