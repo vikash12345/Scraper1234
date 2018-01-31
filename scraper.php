@@ -67,7 +67,7 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 		   			'price' => $price,
 		  			 'address' => $address, 
 		   			'sold' => $sold,
-					'mainpage' => $Mainpage);
+					'mainpage' => $innerlink);
 					 scraperwiki::save(array('listingurl','price','address','sold','mainpage'), $record);
 					}
 					
