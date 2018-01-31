@@ -41,24 +41,24 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 	$Mainpage	=	$Links[$mainpage];
 	
 	$html	=	dlPage($Mainpage);
-	sleep(5);
+	sleep(10);
 	if($html)
 	{
 		$Checkpage	=	$html->find("//[@id='sidepane-header']/div[2]/div/div[1]",0);
 		$totalpages = 	str_replace("20 of" ,"",$Checkpage);
 		$num 		=	preg_replace("/[^0-9\.]/", '', $totalpages);
 		$bindas		= ceil($pagination	=	$num/20);
+		echo "Main Page => $Mainpage Total Records = $num \n";
 		for ($i = 0; $i <= $bindas; $i++)
 		{
 			$innerlink	=	$Mainpage.'/page-'.$i;
 			$pages		=	dlpage($innerlink);
-			sleep(5);
-			echo "Main Page => $Mainpage Total Records = $num \n";
+			sleep(10);
+			
 			if($pages)
 			{
 			for($j = 0; $j <= $num; $j++) 
-				{
-				
+				{				
 					$sold 			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/div[2]",0)->plaintext;
 					$address		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[2]",0)->plaintext;
 					$profileurl		=	$pages->find("//*[@id='MapHomeCard_$j']//div/a[@class='ViewDetailsButtonWrapper']",0)->href;
