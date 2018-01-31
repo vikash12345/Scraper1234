@@ -55,9 +55,9 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 				{
 				
 					$sold 			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/div[2]/span",0)->plaintext;
-					$address		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[2]",0)->plaintext;;
+					$address		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[2]",0)->plaintext;
 					$listingurl		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[2]/div[2]/a",0)->href;
-					$price			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[1]/span[2]",0)->plaintext;;
+					$price			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[1]/span[2]",0)->plaintext;
 					
 							
 					if($price != '' || $price != null)
