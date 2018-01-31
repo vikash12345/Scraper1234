@@ -33,8 +33,7 @@ $cHeadres = array(
 	   
  
  
-$Links	=	array('https://www.redfin.com/county/559/GA/Fayette-County/filter/include=sold-1wk'
-,'https://www.redfin.com/county/536/GA/Cobb-County/filter/include=sold-1wk');
+$Links	=	array('https://www.redfin.com/county/536/GA/Cobb-County/filter/include=sold-1wk');
 
 for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 {
@@ -48,17 +47,38 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 		$bindas		= ceil($pagination	=	$num/20);
 		for ($i = 1; $i <= $bindas; $i++)
 		{
-			$innerlink	=	$Links[$mainpage].'/page-'.$i;
-			for($j = 0; $j <= 19; $j++) 
+			$innerlink	=	$Mainpage.'/page-'.$i;
+			$pages		=	dlpage($innerlink);
+			if($pages)
 			{
-				$pages		=	dlpage($innerlink);
-				if($pages)
+			for($j = 0; $j <= $num; $j++) 
 				{
+				
 					$sold 			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/div[2]/span",0)->plaintext;
+					if($sold == null || $sold == "")
+					{
+						$sold	=	"Not Available";
+					}
+					
 					$address		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[2]",0)->plaintext;
+					if($address == null || $address == "")
+					{
+						$address	=	"Not Available";
+					}
+					
+					
 					$listingurl		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[2]/div[2]/a",0)->href;
+					if($listingurl == null || $listingurl == "")
+					{
+						$listingurl	=	"Not Available";
+					}
 					$price			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[1]/span[2]",0)->plaintext;
-					$link			=	'https://www.redfin.com/'.$listingurl;
+					
+					if($price == null || $price == "")
+					{
+						$price	=	"Not Available";
+					}
+					
 					
 					if($link != 'https://www.redfin.com/')
 					{
