@@ -53,6 +53,7 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 			$innerlink	=	$Mainpage.'/page-'.$i;
 			$pages		=	dlpage($innerlink);
 			sleep(5);
+			echo "Main Page => $Mainpage Total Records = $num \n";
 			if($pages)
 			{
 			for($j = 0; $j <= $num; $j++) 
