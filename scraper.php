@@ -39,7 +39,9 @@ $Links	=	array('https://www.redfin.com/county/536/GA/Cobb-County/filter/include=
 for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 {
 	$Mainpage	=	$Links[$mainpage];
+	
 	$html	=	dlPage($Mainpage);
+	sleep(5);
 	if($html)
 	{
 		$Checkpage	=	$html->find("//[@id='sidepane-header']/div[2]/div/div[1]",0);
@@ -50,6 +52,7 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 		{
 			$innerlink	=	$Mainpage.'/page-'.$i;
 			$pages		=	dlpage($innerlink);
+			sleep(5);
 			if($pages)
 			{
 			for($j = 0; $j <= $num; $j++) 
