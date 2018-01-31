@@ -54,40 +54,21 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 			for($j = 0; $j <= $num; $j++) 
 				{
 				
-					$sold 			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/div[2]/span",0)->plaintext;
-					if($sold == null || $sold == "")
+					$sold 			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/div[2]/span",0);
+					$address		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[2]",0);
+					$listingurl		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[2]/div[2]/a",0);
+					$price			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[1]/span[2]",0);
+					
+							
+					if($price != '' || $price != null)
 					{
-						$sold	=	"Not Available";
-					}
-					
-					$address		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[2]",0)->plaintext;
-					if($address == null || $address == "")
-					{
-						$address	=	"Not Available";
-					}
-					
-					
-					$listingurl		=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[2]/div[2]/a",0)->href;
-					if($listingurl == null || $listingurl == "")
-					{
-						$listingurl	=	"Not Available";
-					}
-					$price			=	$pages->find("//*[@id='MapHomeCard_$j']/div/div[1]/a[2]/div[1]/div[1]/span[2]",0)->plaintext;
-					
-					if($price == null || $price == "")
-					{
-						$price	=	"Not Available";
-					}
-					
-					
-					if($link != 'https://www.redfin.com/')
-					{
+					echo $price."<br>";	
 					$record = array( 'listingurl' =>$link, 
 		   			'price' => $price,
 		  			 'address' => $address, 
 		   			'sold' => $sold,
 					'mainpage' => $Mainpage);
-					           scraperwiki::save(array('listingurl','price','address','sold','mainpage'), $record);
+					 scraperwiki::save(array('listingurl','price','address','sold','mainpage'), $record);
 					}
 					
 				}
