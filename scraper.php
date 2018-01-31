@@ -45,7 +45,7 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 		$totalpages = 	str_replace("20 of" ,"",$Checkpage);
 		$num 		=	preg_replace("/[^0-9\.]/", '', $totalpages);
 		$bindas		= ceil($pagination	=	$num/20);
-		for ($i = 1; $i <= $bindas; $i++)
+		for ($i = 0; $i <= $bindas; $i++)
 		{
 			$innerlink	=	$Mainpage.'/page-'.$i;
 			$pages		=	dlpage($innerlink);
