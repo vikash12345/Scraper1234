@@ -67,7 +67,6 @@ for ($mainpage = 0; $mainpage < sizeof($Links); $mainpage++)
 							
 					if($price != '' || $price != null)
 					{
-					echo $price."<br>";	
 					$record = array( 'listingurl' =>$listingurl, 
 		   			'price' => $price,
 		  			 'address' => $address, 
